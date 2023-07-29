@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+
+</head>
+<body>
+  <h1>Rock Paper Scissors</h1>
+  <p>Player 1: <button onclick="choose('rock', 1)">Rock</button> <button onclick="choose('paper', 1)">Paper</button> <button onclick="choose('scissors', 1)">Scissors</button></p>
+  <p>Player 2: <button onclick="choose('rock', 2)">Rock</button> <button onclick="choose('paper', 2)">Paper</button> <button onclick="choose('scissors', 2)">Scissors</button></p>
+  <p id="result"></p>
+
+  <script>
+    let player1Choice = null;
+    let player2Choice = null;
+
+    // Function to handle player's choice
+    function choose(choice, player) {
+      if (player === 1) {
+        player1Choice = choice;
+      } else if (player === 2) {
+        player2Choice = choice;
+      }
+
+      if (player1Choice !== null && player2Choice !== null) {
+        determineWinner();
+      }
+    }
+
+    // Function to determine the winner
+    function determineWinner() {
+      let resultText = "";
+      if (player1Choice === player2Choice) {
+        resultText = "It's a tie!";
+      } else if (
+        (player1Choice === "rock" && player2Choice === "scissors") ||
+        (player1Choice === "paper" && player2Choice === "rock") ||
+        (player1Choice === "scissors" && player2Choice === "paper")
+      ) {
+        resultText = "Player 1 wins!";
+      } else {
+        resultText = "Player 2 wins!";
+      }
+
+      document.getElementById("result").innerText = resultText;
+      // Reset choices for the next round
+      player1Choice = null;
+      player2Choice = null;
+    }
+  </script>
+</body>
+</html>
